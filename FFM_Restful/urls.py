@@ -16,6 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from rest_framework import routers
+from housefinance import views
+
+router = routers.DefaultRouter()
+router.register(r'accounts', views.AccountViewSet)
+router.register(r'accountDocumentHeaders', views.AccountingDocumentHeaderViewSet)
+router.register(r'accountDocumentItems', views.AccountingDocumentItemViewSet)
+
 urlpatterns = [
     url(r'^ffm/', include('housefinance.urls', namespace='ffm')),
     url(r'^account/', include('account.urls', namespace='account')),
@@ -23,4 +31,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^$', include('home.urls', namespace='home')),
+    url(r'^objects/', include(router.urls)),
 ]

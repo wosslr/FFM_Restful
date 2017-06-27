@@ -5,8 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 
+from rest_framework import viewsets
+
 from .forms import AccountingDocumentForm, AccountingDocumentItemFormSet
-from .models import AccountingDocumentHeader, AccountingDocumentItem
+from .models import AccountingDocumentHeader, AccountingDocumentItem, Account
+from housefinance.serializers import AccountSerializer, AccountingDocumentHeaderSerializer, AccountingDocumentItemSerializer
 from .validations import AccountingDocumentValidation
 from datetime import datetime
 from .funs import fib
@@ -147,3 +150,21 @@ def chart_spend_monthly(request):
     context['periods'] = ChartSpendMonthlyHelper.get_periods()
     context['chart_data_set'] = ChartSpendMonthlyHelper.get_spend_data_by_month(2016, 1)
     return render(request=request, template_name='housefinance/charts/monthly_spend_chart.html', context=context)
+
+
+class AccountViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+
+
+class AccountingDocumentHeaderViewSet(viewsets.ModelViewSet):
+    queryset = AccountingDocumentHeader.objects.all()
+    serializer_class = AccountingDocumentHeaderSerializer
+
+
+class AccountingDocumentItemViewSet(viewsets.ModelViewSet):
+    queryset = AccountingDocumentItem.objects.all()
+    serializer_class = AccountingDocumentItemSerializer
