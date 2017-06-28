@@ -1,0 +1,22 @@
+{
+  "name": "ffm",
+  "homepage": "https://github.com/wosslr/FFM_Restful",
+  "authors": [
+    "Ray Lv <ray.lv@sap.com>"
+  ],
+  "description": "ffm",
+  "main": "index.html",
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.6.1",
+    "jquery": "^3.2.1"
+  }
+}
