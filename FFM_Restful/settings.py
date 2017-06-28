@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import sys
-
+from os.path import abspath, basename, dirname, join, normpath
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
 

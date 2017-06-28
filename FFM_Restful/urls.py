@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
+from django.views.generic import TemplateView
 from rest_framework import routers
 from housefinance import views
 
@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^wechat/', include('wechat.urls', namespace='wechat')),
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^$', include('home.urls', namespace='home')),
+    # url(r'^$', include('home.urls', namespace='home')),
+    url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^objects/', include(router.urls)),
     url(r'^auth/', include('authentication.urls', namespace='auth')),
 ]
