@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'account',
     'wechat',
     'home',
+    'restui',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from rest_framework import routers
 from housefinance import views
+from restui import views as restview
 
 router = routers.DefaultRouter()
 router.register(r'accounts', views.AccountViewSet)
@@ -30,8 +31,10 @@ urlpatterns = [
     url(r'^wechat/', include('wechat.urls', namespace='wechat')),
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # url(r'^$', include('home.urls', namespace='home')),
-    url(r'^$', TemplateView.as_view(template_name='housefinance/index.html')),
+    url(r'^$', include('home.urls', namespace='home')),
+    # url(r'^$', TemplateView.as_view(template_name='restui/index.html')),
     url(r'^objects/', include(router.urls)),
     url(r'^auth/', include('authentication.urls', namespace='auth')),
+    url(r'^restdemo/', restview.demo_api),
+    url(r'^restdemo2/', restview.demo2),
 ]
