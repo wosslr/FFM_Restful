@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^$', include('home.urls', namespace='home')),
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^$', TemplateView.as_view(template_name='housefinance/index.html')),
     url(r'^objects/', include(router.urls)),
     url(r'^auth/', include('authentication.urls', namespace='auth')),
 ]
