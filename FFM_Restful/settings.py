@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import sys
 from os.path import abspath, basename, dirname, join, normpath
+
 # reload(sys)
 # sys.setdefaultencoding('utf-8')
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'datetimewidget',
+    'corsheaders',
     'housefinance',
     'account',
     'wechat',
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -70,7 +73,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-TOKEN_EXPIRATION_TIME = 10
+TOKEN_EXPIRATION_TIME = 3600
 
 ROOT_URLCONF = 'FFM_Restful.urls'
 
@@ -135,6 +138,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 LANGUAGE_CODE = 'zh-hans'
 
