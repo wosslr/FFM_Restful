@@ -7,3 +7,7 @@ export const logIn = (tokenObject) => ({
     expirationTime: tokenObject.expirationTime,
     loggedIn: true
 })
+
+export const logOut = (tokenObject) => ({
+    type: 'LOGOUT'
+})

@@ -7,8 +7,14 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import reducer from '../redux/reducers'
 import routes from '../routes/routes'
+import {loadState, saveState} from '../localStorage/localStorage'
 
-const store = createStore(reducer)
+const persistedState = loadState()
+const store = createStore(reducer, persistedState)
+
+store.subscribe(() => {
+    saveState(store.getState())
+})
 
 class MyApp extends React.Component {
     render() {

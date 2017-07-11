@@ -7,14 +7,16 @@ import MyApp from '../components/MyApp'
 import Home from '../components/home/Home'
 import Welcome from '../components/guest/Welcome'
 import LoginForm from '../components/account/LoginForm'
-import {authCheck} from './utility'
+import AuthCheckContainer from '../components/account/AuthCheckContainer'
 
 export default (
-    <Route component={MyApp} onChange={authCheck}>
+    <Route component={MyApp}>
         <Route path="/" component={Welcome}>
             <Route path="/login" component={LoginForm}/>
         </Route>
-        <Route path="home" component={Home}/>
-        <Route path="logout" component={Welcome}/>
+        <Route component={AuthCheckContainer}>
+            <Route path="home" component={Home}/>
+            <Route path="logout" component={Welcome}/>
+        </Route>
     </Route>
 )

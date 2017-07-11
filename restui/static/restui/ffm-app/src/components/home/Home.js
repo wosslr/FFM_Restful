@@ -4,34 +4,42 @@
 import React from 'react'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {logOut} from '../../redux/actions/auth'
 
 class Home extends React.Component {
+
+    onLogOut(oEvent){
+        this.props.dispatch(logOut());
+    }
 
     render() {
         return (
             <div>
                 <h2>Home</h2>
                 <ul>
-                    <li><Link to="/logout">Logout</Link></li>
+                    <li><Link to="/logout" onClick={this.onLogOut.bind(this)}>Logout</Link></li>
                 </ul>
                 <div>
-                    token : { this.props.token }
+                    token : { this.props.auth.token }
                 </div>
                 <div>
-                    expiration time : { this.props.expirationTime }
+                    expiration time : { this.props.auth.expirationTime ? this.props.auth.expirationTime.toString() : '' }
                 </div>
                 <div>
-                    logged in : { '' + this.props.loggedIn}
+                    logged in : { '' + this.props.auth.loggedIn}
                 </div>
             </div>
         )
     }
 }
 
+Home.contextTypes = {
+    router: PropTypes.object
+}
+
 const mapStateToProps = (state) => ({
-    token: state.token,
-    expirationTime: state.expirationTime,
-    loggedIn: state.loggedIn
+    auth: state.auth
 })
 
 Home = connect(mapStateToProps)(Home)

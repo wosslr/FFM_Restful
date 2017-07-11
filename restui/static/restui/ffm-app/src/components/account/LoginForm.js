@@ -5,7 +5,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import $ from 'jquery/'
 import {connect} from 'react-redux'
-import {logIn} from '../../redux/actions'
+import {logIn} from '../../redux/actions/auth'
+import {utcStrToLocalDate} from '../../utils/utils'
 
 class LoginForm extends React.Component {
 
@@ -25,8 +26,8 @@ class LoginForm extends React.Component {
             contentType: "application/json",
             dataType: 'json',
             success: (data, status) => {
+                _this.props.dispatch(logIn({token: data.token, expirationTime: utcStrToLocalDate(data.expirationTime)}));
                 _this.context.router.push('/home');
-                _this.props.dispatch(logIn({token: data.token, expirationTime: data.expirationTime}));
                 // _this.props.onLoginSuccess({token: data.token, expirationTime: data.expirationTime});
             }
         });
@@ -47,9 +48,9 @@ LoginForm.contextTypes = {
     router: PropTypes.object
 }
 
-const mapStateToProps = state => {
-    return state
-}
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
 
 // const mapDispatchToProps = {
 //     onLoginSuccess: logIn
