@@ -26,7 +26,10 @@ class LoginForm extends React.Component {
             contentType: "application/json",
             dataType: 'json',
             success: (data, status) => {
-                _this.props.dispatch(logIn({token: data.token, expirationTime: utcStrToLocalDate(data.expirationTime)}));
+                _this.props.dispatch(logIn({
+                    token: data.token,
+                    expirationTime: utcStrToLocalDate(data.expirationTime)
+                }));
                 _this.context.router.push('/home');
                 // _this.props.onLoginSuccess({token: data.token, expirationTime: data.expirationTime});
             }
@@ -35,11 +38,23 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                <input name="username" type="text" placeholder="user name"/>
-                <input name="password" type="password" placeholder="password"/>
-                <button type="submit">Login</button>
-            </form>
+            <div className="container">
+                <form className="form-signin" onSubmit={this.handleSubmit.bind(this)}>
+                    <h2 className="form-signin-heading">Please sign in</h2>
+                    <label htmlFor="id_username" className="sr-only">User Name</label>
+                    <input type="text" id="id_username" name="username" className="form-control" placeholder="User Name"
+                           required autoFocus/>
+                    <label htmlFor="id_password" className="sr-only">Password</label>
+                    <input type="password" id="id_password" name="password" className="form-control" placeholder="Password"
+                           required/>
+                    <div className="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"/> Remember me
+                        </label>
+                    </div>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
+            </div>
         )
     }
 }

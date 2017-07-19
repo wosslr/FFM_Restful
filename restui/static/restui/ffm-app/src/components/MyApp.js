@@ -2,9 +2,9 @@
  * Created by I300934 on 7/5/2017.
  */
 import React from 'react'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import { Router, browserHistory } from 'react-router'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {Router, browserHistory} from 'react-router'
 import reducer from '../redux/reducers'
 import routes from '../routes/routes'
 import {loadState, saveState} from '../localStorage/localStorage'
@@ -19,9 +19,11 @@ store.subscribe(() => {
 class MyApp extends React.Component {
     render() {
         return (
-            <Provider store={store}>
-                <Router routes={routes} history={browserHistory} />
-            </Provider>
+            <div className="container">
+                <Provider store={store}>
+                    <Router routes={routes} history={browserHistory}/>
+                </Provider>
+            </div>
         )
     }
 }
