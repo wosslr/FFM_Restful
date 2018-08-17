@@ -1,0 +1,6 @@
+        PUBLIC LICENSE
+     Version 0, June 2018
+
+ Copyright (C) 2018 Free Software Foundation, Inc.,
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
