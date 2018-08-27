@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'datetimewidget',
     'corsheaders',
     'housefinance',
     'account',
@@ -110,7 +109,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ffm',
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'Welcome1',
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',

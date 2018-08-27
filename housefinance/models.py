@@ -11,7 +11,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     user_role = models.CharField(max_length=10, blank=True)
-    sys_user = models.OneToOneField(SysUser, blank=True)
+    sys_user = models.OneToOneField(SysUser, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -35,7 +35,7 @@ class Account(models.Model):
 
 class AccountingDocumentHeader(models.Model):
     creation_date = models.DateTimeField("记账日期")
-    creator = models.ForeignKey(User, verbose_name='创建人')
+    creator = models.ForeignKey(User, verbose_name='创建人', on_delete=models.CASCADE)
     comment = models.TextField(blank=True, verbose_name='备注')
 
     def __str__(self):
@@ -57,8 +57,8 @@ class AccountingDocumentItem(models.Model):
     )
     dc_indicator = models.CharField(max_length=1, choices=DEBIT_CREDIT_INDICATOR_OPTIONS)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    document_header = models.ForeignKey(AccountingDocumentHeader)
-    account = models.ForeignKey(Account)
+    document_header = models.ForeignKey(AccountingDocumentHeader, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
     comment = models.CharField(max_length=255, blank=True)
 
     def __str__(self):

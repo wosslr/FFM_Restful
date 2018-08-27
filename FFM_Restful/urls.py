@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic import TemplateView
 from rest_framework import routers
 from housefinance import views
 from restui import views as restview
@@ -26,14 +25,14 @@ router.register(r'accountDocumentHeaders', views.AccountingDocumentHeaderViewSet
 router.register(r'accountDocumentItems', views.AccountingDocumentItemViewSet)
 
 urlpatterns = [
-    url(r'^ffm/', include('housefinance.urls', namespace='ffm')),
-    url(r'^account/', include('account.urls', namespace='account')),
-    url(r'^wechat/', include('wechat.urls', namespace='wechat')),
+    url(r'^ffm/', include(('housefinance.urls', 'housefinance'), namespace='ffm')),
+    url(r'^account/', include(('account.urls', 'account'), namespace='account')),
+    url(r'^wechat/', include(('wechat.urls', 'wechat'), namespace='wechat')),
     url(r'^admin/', admin.site.urls),
-    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^$', include('home.urls', namespace='home')),
+    url(r'^auth/', include(('rest_framework.urls', 'rest'), namespace='rest_framework')),
+    url(r'^$', include(('home.urls', 'home'), namespace='home')),
     url(r'^objects/', include(router.urls)),
-    url(r'^auth/', include('authentication.urls', namespace='auth')),
+    url(r'^auth/', include(('authentication.urls', 'auth'), namespace='auth')),
     url(r'^restdemo/', restview.demo_api),
     url(r'^restdemo2/', restview.demo2),
 ]
