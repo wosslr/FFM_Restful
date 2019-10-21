@@ -1,4 +1,4 @@
-Django==2.1
+Django==2.1.11
 django-mysql==2.4.1
 django-rest-framework==0.1.0
 djangorestframework==3.8.2
